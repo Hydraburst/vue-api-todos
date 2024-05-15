@@ -50,7 +50,6 @@ async function userLogin(email, password) {
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
-        console.log(userInfo.userInfo.userData.email)
         if (user) {
             userInfo.userInfo.token = user.accessToken
             userInfo.userInfo.userData = user

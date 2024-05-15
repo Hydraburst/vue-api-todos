@@ -1,17 +1,16 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 
-
 const firebaseConfig = {
-  apiKey: 'AIzaSyCMawKDWgF-9Fzk3WAKuy5lcclJNEfrc3c',
-  authDomain: 'vue-todo-list-5d358.firebaseapp.com',
-  databaseURL:
-    'https://vue-todo-list-5d358-default-rtdb.europe-west1.firebasedatabase.app',
-  projectId: 'vue-todo-list-5d358',
-  storageBucket: 'vue-todo-list-5d358.appspot.com',
-  messagingSenderId: '770623207422',
-  appId: '1:770623207422:web:2c9fbae363a2cfcfb432af',
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_DATABASE_URL,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
 }
+
 
 const firebaseApp = initializeApp(firebaseConfig)
 const auth = getAuth(firebaseApp)
