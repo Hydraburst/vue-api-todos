@@ -59,7 +59,7 @@ ul {
 
 @media (max-width: 414px) {
     .container {
-        min-width: 400px;
+        min-width: 380px;
     }
 
     .listContent {

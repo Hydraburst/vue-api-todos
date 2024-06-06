@@ -92,7 +92,7 @@ ul li {
 
 @media (max-width: 414px) {
     .headerWrap {
-        min-width: 400px;
+        min-width: 380px;
         gap: 10px 20px;
     }
 

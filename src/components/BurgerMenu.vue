@@ -115,7 +115,7 @@ const userLogout = () => {
 
 @media (max-width: 414px) {
     .burgerDropdown {
-        width: 400px;
+        width: 380px;
         margin-top: 110px;
     }
 

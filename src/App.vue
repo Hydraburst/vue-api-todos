@@ -41,7 +41,7 @@ onMounted(() => {
 
 @media (max-width: 414px) {
   .container {
-    max-width: 400px;
+    max-width: 380px;
   }
 }
 </style>
