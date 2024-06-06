@@ -38,4 +38,10 @@ const props = defineProps({ text: String })
     font-weight: bold;
     font-size: 18px;
 }
+
+@media (max-width: 414px) {
+    .buttonText {
+        font-size: 16px;
+    }
+}
 </style>

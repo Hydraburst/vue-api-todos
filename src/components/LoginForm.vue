@@ -34,6 +34,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/firebaseConfig';
 import router from '../routes/router';
 import { useUserInfo } from '../stores/userInfo';
+import { useNotificationStore } from '../stores/notificationsStore';
 
 const showPassword = ref(false)
 const isEmailValid = ref(true)
@@ -45,6 +46,9 @@ const invalidPasswordErrorText = ref('')
 const passwordImg = ref(imgVisible)
 const type = ref('password')
 const userInfo = useUserInfo()
+const notificationsStore = useNotificationStore()
+const { addNotification } = notificationsStore
+
 
 async function userLogin(email, password) {
     try {
@@ -53,10 +57,12 @@ async function userLogin(email, password) {
         if (user) {
             userInfo.userInfo.token = user.accessToken
             userInfo.userInfo.userData = user
+            addNotification('Succesfull login', 'success')
+
         }
         router.push("/todos")
     } catch (error) {
-        console.error("Ошибка входа:", error.message);
+        addNotification('Invalid credetianls', 'error')
     }
 }
 

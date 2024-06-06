@@ -40,7 +40,7 @@ ul li {
 }
 
 .headerWrap {
-    background-color: #D19BFC;
+    background-color: #d19bfc;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     padding: 15px 40px;
     display: flex;
@@ -88,5 +88,23 @@ ul li {
 .burgerMenu.active span:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
 
+}
+
+@media (max-width: 414px) {
+    .headerWrap {
+        min-width: 400px;
+        gap: 10px 20px;
+    }
+
+    ul li {
+        font-size: 16px;
+    }
+
+    .line {
+        width: 30px;
+        height: 3px;
+
+
+    }
 }
 </style>

@@ -56,4 +56,17 @@ ul {
     flex-direction: column;
     gap: 12px;
 }
+
+@media (max-width: 414px) {
+    .container {
+        min-width: 400px;
+    }
+
+    .listContent {
+        padding: 22px 45px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+}
 </style>

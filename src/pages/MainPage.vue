@@ -16,7 +16,10 @@ import Popup from '../components/Popup.vue';
 import { onMounted, ref } from 'vue';
 import { computed } from 'vue';
 import { addData, changeData, deleteTask, fetchData, removeData } from '../services/api/tasksApi';
+import { useNotificationStore } from '../stores/notificationsStore';
 
+const notificationsStore = useNotificationStore()
+const { addNotification } = notificationsStore
 
 const tasks = ref([])
 
@@ -25,27 +28,43 @@ const popupActive = ref(false);
 const currentPage = ref('daily')
 
 const loadData = async () => {
-    const data = (await fetchData()).data
-    const todos = [];
-    for (const id in data) {
-        todos.push({
-            id: id,
-            task: data[id].task,
-            type: data[id].type,
-            isDone: data[id].isDone
-        })
+    try {
+        const data = (await fetchData()).data
+        const todos = [];
+        for (const id in data) {
+            todos.push({
+                id: id,
+                task: data[id].task,
+                type: data[id].type,
+                isDone: data[id].isDone
+            })
+        }
+        tasks.value = todos
+    } catch (error) {
+        addNotification('Failed to load data', 'error')
     }
-    tasks.value = todos
+
 }
 
 const addTask = async (task) => {
-    await addData(task)
-    loadData()
+    try {
+        await addData(task)
+        loadData()
+        addNotification('Todo added succesfully', 'info')
+    } catch (error) {
+        addNotification('Something went wrong', 'warning')
+    }
+
 }
 
 const removeTask = async (idToRemove) => {
-    await deleteTask(idToRemove)
-    loadData()
+    try {
+        await deleteTask(idToRemove)
+        loadData()
+        addNotification('Todo removed succesfully', 'info')
+    } catch (error) {
+        addNotification('Something went wrong', 'warning')
+    }
 }
 
 const changeTaskStatus = async (idToFind) => {
@@ -55,19 +74,26 @@ const changeTaskStatus = async (idToFind) => {
         try {
             await changeData(idToFind, updateIsDone)
             loadData()
+            addNotification('Todo status changed', 'info')
         } catch (error) {
-            console.error('Произошла ошибка', error)
+            addNotification('Something went wrong', 'warning')
         }
     }
 }
 
 const removeAllTasks = async () => {
-    await removeData()
-    loadData()
+    try {
+        await removeData()
+        loadData()
+        addNotification('All todos removed successfully', 'info')
+    } catch (error) {
+        addNotification('Something went wrong', 'warning')
+    }
 }
 
 const changePage = (page) => {
     currentPage.value = page
+    fetchData()
 }
 
 const closePopup = () => {

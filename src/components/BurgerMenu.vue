@@ -19,6 +19,10 @@
 <script setup>
 import { useUserInfo } from '../stores/userInfo';
 import { useRouter } from 'vue-router';
+import { useNotificationStore } from '../stores/notificationsStore';
+
+const noteficationStore = useNotificationStore()
+const { addNotification } = noteficationStore
 
 const router = useRouter()
 const userInfo = useUserInfo()
@@ -29,6 +33,7 @@ const userLogout = () => {
     userInfo.userInfo.token = ''
     userInfo.userInfo.userData = ''
     router.push('/')
+    addNotification('Logout successfully', 'success')
 }
 
 </script>
@@ -106,5 +111,24 @@ const userLogout = () => {
 .exit:hover {
     color: #c176ff;
     cursor: pointer;
+}
+
+@media (max-width: 414px) {
+    .burgerDropdown {
+        width: 400px;
+        margin-top: 110px;
+    }
+
+    .delete {
+        font-size: 16px;
+    }
+
+    .exit {
+        font-size: 16px;
+    }
+
+    .burgerDropdownContent {
+        gap: 45px;
+    }
 }
 </style>

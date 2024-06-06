@@ -142,4 +142,10 @@ select {
 .closeIcon:active {
     transform: scale(0.95);
 }
+
+@media (max-width: 414px) {
+    .popupContent {
+        padding: 65px 45px;
+    }
+}
 </style>
