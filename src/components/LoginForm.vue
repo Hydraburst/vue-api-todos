@@ -229,7 +229,7 @@ img {
     text-align: center;
 }
 
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 414px) {
     form {
         min-width: 355px;
     }
