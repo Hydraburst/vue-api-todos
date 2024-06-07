@@ -27,6 +27,10 @@
 import closeIcon from '../assets/x.svg'
 
 import { ref } from 'vue';
+import { useNotificationStore } from '../stores/notificationsStore';
+
+const notificationStore = useNotificationStore()
+const { addNotification } = notificationStore
 
 const task = ref({
     task: '',
@@ -34,11 +38,14 @@ const task = ref({
     isDone: false
 });
 
+
 const submit = () => {
     if (task.value.task && task.value.type) {
         props.addTask(task.value);
         task.value = { task: '', type: '', };
         emits('onClick');
+    } else {
+        addNotification('Fill in the two fields', 'error')
     }
 }
 
@@ -136,7 +143,7 @@ select {
 
 .closeIcon:hover {
     transform: scale(1.1);
-    color: red;
+    color: var(--error);
 }
 
 .closeIcon:active {
